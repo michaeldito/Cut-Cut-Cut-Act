@@ -1,6 +1,7 @@
 from TaxBracket import *;
 from TaxBrackets import *;
 import sys;
+import json;
 
 def doTaxes(income, status):
 	brackets = [];
@@ -24,9 +25,9 @@ def doTaxes(income, status):
 	cccMarriedBrackets = TaxBrackets(brackets);
 
 	if status == 'single':
-		return "For a single person $" + str(income) + ", tax will be $" + str(cccSingleBrackets.calcTaxedAmount(income)) + '\n';
+		data = { "income": str(income), "tax": str(cccSingleBrackets.calcTaxedAmount(income)) };
 	if status == 'married':
-		return "For a #married couple $" + str(income) + ", tax will be $" + str(cccMarriedBrackets.calcTaxedAmount(income)) + '\n';
+		data = { "income": str(income), "tax": str(cccMarriedBrackets.calcTaxedAmount(income))};
 
-
-
+	jsonData = json.dumps(data)
+	return jsonData
