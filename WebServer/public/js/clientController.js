@@ -7,13 +7,19 @@ calcTaxes = function() {
 	var income = document.getElementById('income').value;
 	var status = "";
 	if (document.getElementById('single').value != 0) 
-		status = "married";
-	else
 		status = "single";
+	else
+		status = "married";
 
-	var postData = {income: document.getElementById('income').value, status: status}
+	var postData = {
+			income: document.getElementById('income').value,
+			status: status
+		}
 
-	$.post("35.203.170.104/cutcutcut", postData.stringify(), function(data, status){
-        console.log(status);
-    });
+	console.log(JSON.stringify(postData));
+
+	$.post("/calculate", postData, function(data, status){
+        console.log('data: ' + data);
+        console.log('status: ' + status);
+    }, "json");
 }

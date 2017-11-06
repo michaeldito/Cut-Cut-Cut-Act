@@ -9,17 +9,18 @@ block content
   // Main
   #main
     header.major.container(class='75%')
-      form(action='35.203.170.104', method='POST')
+      //form(action='/js/clientController.js', method='POST')
+      div
         label Income
-        input(type='text', style='text-align:center' name='income')
+        input(id='income', type='text', style='text-align:center' name='income')
         label Status
-        input(type='radio', name='status', value='single')
+        input(id='single', type='radio', name='status', value='single')
         |  Single
-        input(type='radio', name='status', value='married')
+        input(id='married', type='radio', name='status', value='married')
         |  Married 
         br
         label ​
-        input.myForm(type='submit', value='submit')
+        input.myForm(id='submit', type='submit', value='submit')
   // Footer
   #footer
     .container(class='75%')
@@ -37,6 +38,7 @@ block content
   script(src='/js/jquery.min.js')
   script(src='/js/skel.min.js')
   script(src='/js/util.js')
+  script(src='/js/clientController.js')
   //if lte IE 8
     script(src='/js/ie/respond.min.js')
   script(src='/js/main.js')
