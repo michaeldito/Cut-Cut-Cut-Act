@@ -27,5 +27,7 @@ calcTaxes = function() {
 
 	$.post("http://35.203.178.96/cutcutcut", JSON.stringify(postData), function(res, status){
         console.log("process :" + JSON.stringify(res));
+        document.getElementById('results').style.visibility = 'visible';
+        document.getElementById('tax_results').innerHTML = res.tax;
     }, "json");
 }
