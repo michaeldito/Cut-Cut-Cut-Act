@@ -18,8 +18,14 @@ calcTaxes = function() {
 
 	console.log(JSON.stringify(postData));
 
+/*
 	$.post("/calculate", postData, function(data, status){
         console.log('data: ' + data);
         console.log('status: ' + status);
+    }, "json");
+*/
+
+	$.post("http://35.203.178.96/cutcutcut", JSON.stringify(postData), function(res, status){
+        console.log("process :" + JSON.stringify(res));
     }, "json");
 }
