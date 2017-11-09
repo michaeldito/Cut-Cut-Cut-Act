@@ -18,6 +18,9 @@ def cutcutcut():
 	print(request.get_json())
 	try:
 		income = float(request.get_json()['income'])
-	status = request.get_json()['status']
-	response_content = doTaxes(income, status)
-	return Response(response=response_content, status=200, mimetype="application/text")
+		status = request.get_json()['status']
+		response_content = doTaxes(income, status)
+		return Response(response=response_content, status=200, mimetype="application/text")
+	except:
+		print('Bad json data')
+		return Response(response="No luck",status=200, mimetype="application/text")
