@@ -12,10 +12,10 @@ CORS(app)
 
 @app.route("/cutcutcut", methods=['POST', 'GET'])
 def cutcutcut():
-	print(request)
 	print('json:')
-	print(json.dumps(request.get_json()))
-	print(request.get_json())
+	print(request.get_json(force=True))
+	print('data:')
+	print(request.get_data())
 	try:
 		income = float(request.get_json()['income'])
 		status = request.get_json()['status']
