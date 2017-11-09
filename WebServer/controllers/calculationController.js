@@ -8,7 +8,7 @@ var calculateTaxes = function (req, res, next) {
 	console.log('income: ' + data.income);
 	console.log('status: ' + data.status);
 	
-	$.post("35.203.164.77/cutcutcut", data, function(res, status){
+	$.post("35.203.178.96:80/cutcutcut", data, function(res, status){
         console.log(res);
         console.log(response);
     }, "json");
