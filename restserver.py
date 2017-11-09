@@ -4,12 +4,15 @@
 
 import json
 from flask import Flask, Response, request
+from flask_cors import CORS
 from cutcutcut import doTaxes
 
 app = Flask(__name__)
+CORS(app)
 
 @app.route("/cutcutcut", methods=['POST', 'GET'])
 def cutcutcut():
+	print(request)
 	print('json:')
 	print(json.dumps(request.get_json()))
 	print(request.get_json())
