@@ -13,7 +13,8 @@ def cutcutcut():
 	print('json:')
 	print(json.dumps(request.get_json()))
 	print(request.get_json())
-	income = float(request.get_json()['income'])
+	try:
+		income = float(request.get_json()['income'])
 	status = request.get_json()['status']
 	response_content = doTaxes(income, status)
 	return Response(response=response_content, status=200, mimetype="application/text")
