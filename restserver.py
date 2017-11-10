@@ -23,9 +23,9 @@ def doTaxes():
 		credits = float(incoming['credits'])
 		personalExemptions = float(incoming['personalExemptions'])
 
-
-		response_content = calculateTaxes(income, status, deductions, stateAndLocalTaxDeduction, credits, personalExemptions)
-		return Response(response=response_content, status=200, mimetype="application/text")
+		result = calculateTaxes(income, status, deductions, stateAndLocalTaxDeduction, credits, personalExemptions)
+		print result
+		return Response(response=result, status=200, mimetype="application/text")
 	except:
 		print('Bad json data')
 		return Response(response="No luck",status=200, mimetype="application/text")
