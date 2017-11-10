@@ -19,7 +19,13 @@ def doTaxes():
 	try:
 		income = float(request.get_json()['income'])
 		status = request.get_json()['status']
-		response_content = calculateTaxes(income, status)
+		deductions = float(request.get_json()['deductions'])
+		deductions = float(request.get_json()['stateAndLocalTaxDeduction'])
+		deductions = float(request.get_json()['credits'])
+		deductions = float(request.get_json()['personalExemptions'])
+
+
+		response_content = calculateTaxes(income, status, deductions, stateAndLocalTaxDeduction, credits, personalExemptions)
 		return Response(response=response_content, status=200, mimetype="application/text")
 	except:
 		print('Bad json data')

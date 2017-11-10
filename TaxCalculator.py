@@ -14,7 +14,5 @@ def calculateTaxes(income, status, deductions=0, stateAndLocalTaxDeduction=0, cr
 	results['Tax Cuts And Jobs Act'] = taxCutsAndJobsActResults
 	results['Current 2018 System'] = currentSystemResults
 
-	return results
-
 	jsonData = json.dumps(results)
 	return jsonData
