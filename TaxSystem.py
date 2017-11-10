@@ -22,8 +22,6 @@ class TaxSystem:
 
 		standardDeduction = float(self.standardDeduction[status])
 
-		print('stuff: ' + self.name + str(stateAndLocalTaxDeduction))
-
 		taxableIncome = float(income)
 		taxableIncome -= float(deductions)
 		taxableIncome -= standardDeduction

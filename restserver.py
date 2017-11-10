@@ -13,16 +13,15 @@ CORS(app)
 @app.route("/cutcutcut", methods=['POST', 'GET'])
 def doTaxes():
 	print('json:')
-	print(request.get_json(force=True))
-	print('data:')
-	print(request.get_data())
+	incoming = request.get_json(force=True)
+	print(incoming)
 	try:
-		income = float(request.get_json()['income'])
-		status = request.get_json()['status']
-		deductions = float(request.get_json()['deductions'])
-		stateAndLocalTaxDeduction = float(request.get_json()['stateAndLocalTaxDeduction'])
-		credits = float(request.get_json()['credits'])
-		personalExemptions = float(request.get_json()['personalExemptions'])
+		income = float(incoming['income'])
+		status = incoming['status']
+		deductions = float(incoming['deductions'])
+		stateAndLocalTaxDeduction = float(incoming['stateAndLocalTaxDeduction'])
+		credits = float(incoming['credits'])
+		personalExemptions = float(incoming['personalExemptions'])
 
 
 		response_content = calculateTaxes(income, status, deductions, stateAndLocalTaxDeduction, credits, personalExemptions)
