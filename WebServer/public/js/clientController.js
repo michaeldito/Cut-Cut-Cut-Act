@@ -13,8 +13,12 @@ calcTaxes = function() {
 
 	var postData = {
 			income: document.getElementById('income').value,
-			status: status
-		}
+			status: status,
+			deductions: 0,
+			stateAndLocalTaxDeduction: 6000,
+			credits: 0,
+			personalExemptions: 1
+	}
 
 	console.log(JSON.stringify(postData));
 
@@ -26,8 +30,8 @@ calcTaxes = function() {
 */
 
 	$.post("http://35.203.178.96/cutcutcut", JSON.stringify(postData), function(res, status){
-        console.log("process :" + JSON.stringify(res));
+        console.log("results :" + JSON.stringify(res));
         document.getElementById('results').style.visibility = 'visible';
-        document.getElementById('tax_results').innerHTML = res.tax;
+        document.getElementById('tax_results').innerHTML = res.savingsUnderNewPlan;
     }, "json");
 }
