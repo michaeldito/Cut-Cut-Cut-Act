@@ -20,14 +20,7 @@ calcTaxes = function() {
 			personalExemptions: 1
 	}
 
-	console.log(JSON.stringify(postData));
-
-/*
-	$.post("/calculate", postData, function(data, status){
-        console.log('data: ' + data);
-        console.log('status: ' + status);
-    }, "json");
-*/
+	console.log("postData: " + JSON.stringify(postData));
 
 	$.post("http://35.203.178.96/cutcutcut", JSON.stringify(postData), function(res, status){
         console.log("results :" + JSON.stringify(res));
