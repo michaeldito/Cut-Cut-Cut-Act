@@ -20,9 +20,9 @@ def doTaxes():
 		income = float(request.get_json()['income'])
 		status = request.get_json()['status']
 		deductions = float(request.get_json()['deductions'])
-		deductions = float(request.get_json()['stateAndLocalTaxDeduction'])
-		deductions = float(request.get_json()['credits'])
-		deductions = float(request.get_json()['personalExemptions'])
+		stateAndLocalTaxDeduction = float(request.get_json()['stateAndLocalTaxDeduction'])
+		credits = float(request.get_json()['credits'])
+		personalExemptions = float(request.get_json()['personalExemptions'])
 
 
 		response_content = calculateTaxes(income, status, deductions, stateAndLocalTaxDeduction, credits, personalExemptions)
