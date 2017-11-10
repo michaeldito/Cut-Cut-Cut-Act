@@ -3,14 +3,18 @@ from TaxBracket import *;
 class TaxBrackets:
 	
 	def __init__(self, brackets):
-		self.brackets = brackets;
+		self.brackets = brackets
 		
-	def calcTaxedAmount(self, income):
-		taxedAmountSum = 0;
+	def calcTaxedAmountForBrackets(self, income):
+		taxedAmountSum = 0
+		results = []
 		for bracket in self.brackets:
-			taxedAmount = bracket.calcTaxedAmount(income);
-			taxedAmountSum += taxedAmount;
-			print taxedAmount;
+			bracketResults = bracket.calcTaxedAmount(income)
+			taxedAmountSum += bracketResults['taxedAmount']
+			results.append(bracketResults)
 		
-		return taxedAmountSum;
+		return {
+			'taxedAmountFromBrackets' : taxedAmountSum,
+			'bracketResults'   : results
+		}
 		

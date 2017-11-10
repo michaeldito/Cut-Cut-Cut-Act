@@ -5,13 +5,13 @@
 import json
 from flask import Flask, Response, request
 from flask_cors import CORS
-from cutcutcut import doTaxes
+from TaxCalculator import calculateTaxes
 
 app = Flask(__name__)
 CORS(app)
 
 @app.route("/cutcutcut", methods=['POST', 'GET'])
-def cutcutcut():
+def doTaxes():
 	print('json:')
 	print(request.get_json(force=True))
 	print('data:')
@@ -19,7 +19,7 @@ def cutcutcut():
 	try:
 		income = float(request.get_json()['income'])
 		status = request.get_json()['status']
-		response_content = doTaxes(income, status)
+		response_content = calculateTaxes(income, status)
 		return Response(response=response_content, status=200, mimetype="application/text")
 	except:
 		print('Bad json data')
