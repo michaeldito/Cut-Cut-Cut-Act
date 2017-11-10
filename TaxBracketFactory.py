@@ -33,7 +33,7 @@ def buildTaxCutsAndJobsActSystem():
 	standardDeductions['married'] = 0
 
 
-	cccTaxSystem = TaxSystem('Tax Cuts and Jobs Act', cccBrackets, standardDeductions, 4150, 0)
+	cccTaxSystem = TaxSystem('Tax Cuts and Jobs Act', cccBrackets, standardDeductions, 4150, 0, 0)
 
 	return cccTaxSystem
 
