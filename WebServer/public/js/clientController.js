@@ -22,9 +22,24 @@ calcTaxes = function() {
 
 	console.log("postData: " + JSON.stringify(postData));
 
-	$.post("http://35.203.178.96/cutcutcut", JSON.stringify(postData), function(res, status){
-        console.log("results :" + JSON.stringify(res));
-        document.getElementById('results').style.visibility = 'visible';
-        document.getElementById('tax_results').innerHTML = res.savingsUnderNewPlan;
-    }, "json");
+	$.ajax({
+		type: "POST",
+		url: "http://35.203.158.17/cutcutcut",
+		data: JSON.stringify(postData),
+		success: function(res, status) {
+			try {
+				console.log('recieved a response');
+				console.log("results :" + JSON.stringify(res));
+				document.getElementById('results').style.visibility = 'visible';
+				document.getElementById('tax_results').innerHTML = res.savingsUnderNewPlan;
+			}
+			catch(exception) {
+				console.log('Caught Exception: ' + e.message);
+			}
+    	},
+		error: function(jqXHR, textStatus, errorThrown) {
+			alert("Error, status = " + textStatus + ", " +
+				"error thrown: " + errorThrown);
+		}
+	});
 }

@@ -4,12 +4,12 @@ var calculationController = require('../controllers/calculationController.js');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+  res.render('index', { title: 'Estimate Your Taxes' });
 });
 
-router.post('/calculate', function(req, res, next) {
-	console.log('here')
-    calculationController.calculateTaxes(req, res, next);
+router.post('/postTest', function(req, res, next) {
+	console.log('recieved hit at postTest');
+	return 'testWorks';
 });
 
 module.exports = router;
