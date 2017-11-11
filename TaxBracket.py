@@ -19,7 +19,7 @@ class TaxBracket:
 		results = {
 			'order'       : self.order,
 			'start'       : self.start,
-			'end'         : self.end,
+			'end'         : str(self.end),
 			'percent'     : self.percent,
 			'taxedAmount' : taxedAmount
 		}
