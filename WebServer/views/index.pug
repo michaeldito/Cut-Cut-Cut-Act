@@ -19,6 +19,14 @@ block content
         input(id='married', type='radio', name='status', value='married')
         |  Married 
         br
+        label State And Local Tax Deductions
+        input(id='stateAndLocalTaxDeduction', type='text', style='text-align:center' name='stateAndLocalTaxDeduction')
+        label Itemized Deductions
+        input(id='deductions', type='text', style='text-align:center' name='deductions')
+        label Tax Credits
+        input(id='credits', type='text', style='text-align:center' name='credits')
+        label Exemptions (1 for you, one for each child)
+        input(id='personalExemptions', type='text', style='text-align:center' name='personalExemptions')
         label ​
         input.myForm(id='submit', type='submit', value='submit')
       br

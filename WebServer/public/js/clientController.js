@@ -10,14 +10,18 @@ calcTaxes = function() {
 		status = "single";
 	else
 		status = "married";
+	var stateAndLocalTaxDeduction = document.getElementById('stateAndLocalTaxDeduction').value;
+	var deductions = document.getElementById('deductions').value;
+	var credits = document.getElementById('credits').value;
+	var personalExemptions = document.getElementById('personalExemptions').value;
 
 	var postData = {
 			income: document.getElementById('income').value,
 			status: status,
-			deductions: 0,
-			stateAndLocalTaxDeduction: 6000,
-			credits: 0,
-			personalExemptions: 1
+			deductions: deductions,
+			stateAndLocalTaxDeduction: stateAndLocalTaxDeduction,
+			credits: credits,
+			personalExemptions: personalExemptions
 	}
 
 	console.log("postData: " + JSON.stringify(postData));
