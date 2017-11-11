@@ -4,8 +4,8 @@ block content
   // Header
   #header
     img#title-image(src='images/dollar-sign.png')
-    h1 The Cut-Cut-Cut-Act
-    p Check out how much you benefit, or don't benefit, with the new plan.
+    h1 Your Friendly Neighborhood Tax Estimator
+    p Check out how much you benefit, or don't benefit, with the proposed tax bills.
   // Main
   #main
     header.major.container(class='75%')
@@ -13,28 +13,37 @@ block content
       div
         label Income
         input(id='income', type='text', style='text-align:center' name='income')
+        br
         label Status
         input(id='single', type='radio', name='status', value='single')
         |  Single
         input(id='married', type='radio', name='status', value='married')
         |  Married 
         br
+        br
         label State And Local Tax Deductions
         input(id='stateAndLocalTaxDeduction', type='text', style='text-align:center' name='stateAndLocalTaxDeduction')
+        br
         label Itemized Deductions
         input(id='deductions', type='text', style='text-align:center' name='deductions')
+        br
         label Tax Credits
         input(id='credits', type='text', style='text-align:center' name='credits')
+        br
         label Exemptions (1 for you, one for each child)
         input(id='personalExemptions', type='text', style='text-align:center' name='personalExemptions')
+        br
         label ​
         input.myForm(id='submit', type='submit', value='submit')
       br
       br
 
       div(style='visibility:hidden', id='results')
-        h2 Taxes
+        h1 Results
         p(id='tax_results')
+        p(id='tax_results_percent')
+
+      p(id='disclosure') Disclosure: We take no responsibility and assume no liability for any harm caused by the information given on this page. We have done our best to estimate taxes based on the input given and based on the latest proposals in congress, but we are neither tax attorneys nor certified processional accountants (however, we are software engineers and pretty good at math :) ). Our best estimates are given, and there is no malicious intent here, but we cannot guarantee that these calculations are accurate.
   // Footer
   #footer
     .container(class='75%')

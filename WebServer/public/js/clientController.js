@@ -32,13 +32,36 @@ calcTaxes = function() {
 		data: JSON.stringify(postData),
 		success: function(res, status) {
 			try {
-				console.log('recieved a response');
 				console.log("results :" + JSON.stringify(res));
+				
+				var summaryMessage = document.getElementById('tax_results')
+				var percentSavingsMessage = document.getElementById('tax_results_percent')
+				var dollarSavings = Math.round(res.savingsUnderNewPlan * 100) / 100
+				var inputIncome = document.getElementById('income').value;
+				var percentSavings = Math.abs(((dollarSavings / inputIncome) * 100).toFixed(2))
+
+
 				document.getElementById('results').style.visibility = 'visible';
-				document.getElementById('tax_results').innerHTML = res.savingsUnderNewPlan;
+				if (dollarSavings < 0)
+					dollarSavings *= -1;
+
+				if (res.savingsUnderNewPlan > 0) {
+					summaryMessage.innerHTML = "You will pay $" + dollarSavings.toFixed(2) + " less in taxes under the proposed house bill.";
+					summaryMessage.style.color = 'green';
+					percentSavingsMessage.innerHTML = "This is " + percentSavings + "% of your income";
+					percentSavingsMessage.style.color = 'green';
+				}
+				else {
+					summaryMessage.innerHTML = "You will pay $" + dollarSavings.toFixed(2) + " more in taxes under the proposed house bill.";
+					summaryMessage.style.color = 'red';
+					percentSavingsMessage.innerHTML = "This is " + percentSavings + "% of your income";
+					percentSavingsMessage.style.color = 'red';
+				}
+
+
 			}
 			catch(exception) {
-				console.log('Caught Exception: ' + e.message);
+				console.log('Caught Exception: ' + exception.message);
 			}
     	},
 		error: function(jqXHR, textStatus, errorThrown) {
