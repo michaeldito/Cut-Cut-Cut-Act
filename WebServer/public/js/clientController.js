@@ -37,9 +37,9 @@ calcTaxes = function() {
 				var percentSavingsMessage = document.getElementById('tax_results_percent')
 				var dollarSavings = Math.round(res.savingsUnderNewPlan * 100) / 100
 				var inputIncome = document.getElementById('income').value;
-				var percentSavings = Math.abs(((dollarSavings / inputIncome) * 100).toFixed(2))
-				var currentEffectiveTaxRate = (res.Current2018System.taxedAmountAfterCredits / inputIncome) * 100).toFixed(2)
-				var currentEffectiveTaxRate = (res.TaxCutsAndJobsActHouse.taxedAmountAfterCredits / inputIncome) * 100).toFixed(2)
+				var percentSavings = Math.abs(((dollarSavings / inputIncome) * 100).toFixed(2));
+				var currentEffectiveTaxRate = ((res.Current2018System.taxedAmountAfterCredits / inputIncome) * 100).toFixed(2);
+				var houseEffectiveTaxRate = ((res.TaxCutsAndJobsActHouse.taxedAmountAfterCredits / inputIncome) * 100).toFixed(2);
 
 
 				document.getElementById('results').style.visibility = 'visible';
