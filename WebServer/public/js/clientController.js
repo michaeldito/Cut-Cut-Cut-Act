@@ -6,10 +6,9 @@ $('#submit').click(function(){
 calcTaxes = function() {
 	var income = document.getElementById('income').value;
 	var status = "";
-	if (document.getElementById('single').value != 0) 
-		status = "single";
-	else
-		status = "married";
+	var status = $('input[name=status]:checked').val();
+	console.log('status ' + status);
+
 	var stateAndLocalTaxDeduction = document.getElementById('stateAndLocalTaxDeduction').value;
 	var deductions = document.getElementById('deductions').value;
 	var credits = document.getElementById('credits').value;
