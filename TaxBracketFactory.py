@@ -33,7 +33,7 @@ def buildTaxCutsAndJobsActSystem():
 	standardDeductions['married'] = 0
 
 
-	cccTaxSystem = TaxSystem('Tax Cuts and Jobs Act', cccBrackets, standardDeductions, 4150, 0, 0)
+	cccTaxSystem = TaxSystem('TaxCutsAndJobsActHouse', cccBrackets, standardDeductions, 4150, 0, 0)
 
 	return cccTaxSystem
 
@@ -71,6 +71,6 @@ def buildCurrent2018System():
 	standardDeductions['single'] = 6500
 	standardDeductions['married'] = 13000
 
-	currentTaxSystem = TaxSystem('Current 2018 System', bracketsArray, standardDeductions, 4150)
+	currentTaxSystem = TaxSystem('Current2018System', bracketsArray, standardDeductions, 4150)
 
 	return currentTaxSystem
