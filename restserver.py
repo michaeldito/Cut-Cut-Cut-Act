@@ -25,7 +25,6 @@ def doTaxes():
 
 		result = calculateTaxes(income, status, deductions, stateAndLocalTaxDeduction, credits, personalExemptions)
 		print result
-		return Response(response="No luck",status=200, mimetype="application/text")
 		return Response(response=result, status=200, mimetype="application/json")
 	except:
 		print('Bad json data')
