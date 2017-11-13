@@ -7,7 +7,6 @@ calcTaxes = function() {
 	var income = document.getElementById('income').value;
 	var status = "";
 	var status = $('input[name=status]:checked').val();
-	console.log('status ' + status);
 
 	var stateAndLocalTaxDeduction = document.getElementById('stateAndLocalTaxDeduction').value;
 	var deductions = document.getElementById('deductions').value;
@@ -23,7 +22,9 @@ calcTaxes = function() {
 			personalExemptions: personalExemptions
 	}
 
-	console.log("postData: " + JSON.stringify(postData));
+	console.log("Sending data to Rest Server /cutcutcut: ");
+	console.log('   ' + JSON.stringify(postData));
+	console.log();
 
 	$.ajax({
 		type: "POST",
@@ -31,11 +32,13 @@ calcTaxes = function() {
 		data: JSON.stringify(postData),
 		success: function(res, status) {
 			try {
-				//console.log("results :" + JSON.stringify(res));
+				console.log('   Recieved successful response from Rest Server');
+				console.log('      The response is the following:');
+				console.log('         ' + JSON.stringify(res));
 				
-				var summaryMessage = document.getElementById('tax_results')
-				var percentSavingsMessage = document.getElementById('tax_results_percent')
-				var dollarSavings = Math.round(res.savingsUnderNewPlan * 100) / 100
+				var summaryMessage = document.getElementById('tax_results');
+				var percentSavingsMessage = document.getElementById('tax_results_percent');
+				var dollarSavings = Math.round(res.savingsUnderNewPlan * 100) / 100;
 				var inputIncome = document.getElementById('income').value;
 				var percentSavings = Math.abs(((dollarSavings / inputIncome) * 100).toFixed(2));
 				var current2018TaxSystem = res.Current2018System;
@@ -61,23 +64,28 @@ calcTaxes = function() {
 					percentSavingsMessage.style.color = 'red';
 				}
 
-				console.log("This will be the data sent to the server at resultsView/current2018TaxSystem:");
-				console.log('   ' + JSON.stringify(current2018TaxSystem));
+				console.log("         This will be the data sent to the server at resultsView/current2018TaxSystem:");
+				console.log('            ' + JSON.stringify(current2018TaxSystem));
 
 				$.ajax({
 					type: 'POST',
 					url: '/resultsView/current2018TaxSystem',
 					data: JSON.stringify(current2018TaxSystem),
-					dataType: 'json',
+					contentType: 'application/json',
 					success: function(res, status) {
+						console.log('         Recieved a succesful response to /resultsView/current2018TaxSystem');
+						console.log('         The response is the following:');
+						console.log('            ' + res);
 						var resultsDiv = document.getElementById('result-details-current2018System');
-						console.log('status of results 2018 query' + status);
-						console.log('res of results 2018 query' + res);
 						resultsDiv.innerHTML = res;
 					},
 					error: function(jqXHR, textStatus, errorThrown) {
+						console.log("         Error thrown in post to resultsView/current2018TaxSystem in clientController.js, status = " + textStatus);
+						console.log("            Error: " + errorThrown);
+						/*
 						alert("Error thrown in post to resultsView/current2018TaxSystem in clientController.js, status = " + textStatus + ", " +
 							"error thrown: " + errorThrown);
+						*/
 					}
 				});
 
@@ -87,8 +95,12 @@ calcTaxes = function() {
 			}
     	},
 		error: function(jqXHR, textStatus, errorThrown) {
+			console.log("   Error thrown in post to Rest Server /cutcutcut in clientController.js, status = " + textStatus);
+			console.log("      Error: " + errorThrown);
+			/*
 			alert("Error, status = " + textStatus + ", " +
 				"error thrown: " + errorThrown);
+			*/
 		}
 	});
 }

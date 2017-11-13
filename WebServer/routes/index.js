@@ -12,7 +12,7 @@ router.post('/resultsView/current2018TaxSystem', function(req, res, next) {
 	//var tempdata = {'bracketResults' : {'taxedAmountFromBrackets' : 11111}};
 	console.log('Recieved request at /resultsView/current2018TaxSystem:');
 	console.log('   Request Body:');
-	console.log('      ' + typeof(req.body));
+	console.log('      Type: ' + typeof(req.body));
 	console.log('      ' + JSON.stringify(req.body));
 	req.app.render('current2018TaxSystemResults', req.body, function(err, html){
 		try {
