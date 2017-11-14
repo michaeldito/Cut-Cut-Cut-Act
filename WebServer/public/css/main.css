@@ -2375,6 +2375,24 @@
 			font-size: 0.8em;
 		}
 
+
+/* Twisty */
+
+	input[type="button"],
+	.twisty {
+		font-size: 0.8em;
+		background: #ffffff;
+		border-radius: 0px;
+		border: 0;
+		color: #222222;
+	}
+
+		input[type="button"]:hover,
+		.twisty:hover {
+			background: #6e6570;
+		}
+
+
 /* Box */
 
 	.box {

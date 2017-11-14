@@ -10,16 +10,17 @@ $('#showResultDetails2018').click(function() {
 	var resultsView = document.getElementById('result-details-current2018System');
 	var thisButton = document.getElementById('showResultDetails2018');
 	$('#result-details-current2018System').slideToggle();
-/*
-	if (resultsView.style.visibility == 'hidden') {
-		//resultsView.style.visibility = 'visible';
-		//thisButton.innerHTML = 'hide';
+
+	if (thisButton.isOpen == 'true') {
+		thisButton.isOpen = 'false';
+		thisButton.innerHTML = '&#9654';
+		console.log('closed twisty');
 	}
 	else{
-		//resultsView.style.visibility = 'hidden';
-		//thisButton.innerHTML = 'show';
+		thisButton.isOpen = 'true';
+		thisButton.innerHTML = '&#9660';
+		console.log('opened twisty');
 	}
-*/
 });
 
 calcTaxes = function() {
