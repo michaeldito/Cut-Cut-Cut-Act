@@ -15,17 +15,24 @@ router.post('/resultsView/current2018TaxSystem', function(req, res, next) {
 	console.log('      Type: ' + typeof(req.body));
 	console.log('      ' + JSON.stringify(req.body));
 	req.app.render('current2018TaxSystemResults', req.body, function(err, html){
-		try {
-			res.send(html);
+		console.log('zoe is the best!');
+		if (err) {
+			console.log("Error while rendering current2018TaxSystemResults:")
+			console.log('   ' + err);
 		}
-		catch(exception) {
-			console.log('Cuaght Exception in /resultsView/current2018TaxSystem: ' + exception.message);
+		else {
+			try {
+				res.send(html);
+			}
+			catch(exception) {
+				console.log('Cuaght Exception in /resultsView/current2018TaxSystem: ' + exception.message);
+			}
 		}
 	});
 });
 
 router.get('/resultsTest', function(req,res,next) {
-	req.app.render('current2018TaxSystemResults', function(err, html){
+	req.app.render('current2018TaxSystemResults', function(err, html) {
 		console.log("here!");
 		res.send(html);
 	});

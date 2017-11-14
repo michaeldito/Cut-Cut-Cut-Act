@@ -15,6 +15,6 @@ class TaxBrackets:
 		
 		return {
 			'taxedAmountFromBrackets' : taxedAmountSum,
-			'bracketResults'   : results
+			'resultsFromBrackets'   : results
 		}
 		

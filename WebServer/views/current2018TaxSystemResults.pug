@@ -1,2 +1,39 @@
-p Here are some results
-p #{bracketResults.taxedAmountFromBrackets}
+p
+	| Here are the details of your taxes under the current tax system for 2018
+	br
+	| Total Income #{income}
+	br
+	| Minus deductions:
+	br
+	| 	Standard Deduction: #{standardDeduction}
+	br
+	| 	State And Local Tax Deductions: #{stateAndLocalTaxDeduction}
+	br
+	| 	Itemized Deductions: #{deductions}
+	br
+	| Leaves you with #{taxableIncome} in Taxable Income
+
+	| Tax Brackets
+	br
+table
+	tr
+		td Start of Bracket
+		td End of Bracket
+		td Percent
+		td Amount Paid in Taxes
+
+	each bracket in bracketResults
+		tr
+			-console.log(bracket);
+			each number in bracket
+				td number
+	br
+
+	| You pay a total of #{bracketResults.taxedAmountFromBrackets} in taxes due to the brackets.
+	br
+
+	| You taxes are further reduced by {#credits}
+	br
+
+	| Leaving you owing {#taxedAmountAfterCredits}
+	br
