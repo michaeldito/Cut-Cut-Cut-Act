@@ -11,15 +11,15 @@ block content
     header.major.container(class='75%')
       //form(action='/js/clientController.js', method='POST')
       div
-        label Income
-        input(id='income', type='text', style='text-align:center' name='income')
-        br
         label Status
         input(id='single', type='radio', name='status', value="single")
         |  Single
         input(id='married', type='radio', name='status', value="married")
         |  Married 
         br
+        br
+        label Income
+        input(id='income', type='text', style='text-align:center' name='income')
         br
         label State And Local Tax Deductions
         input(id='stateAndLocalTaxDeduction', type='text', style='text-align:center' name='stateAndLocalTaxDeduction')

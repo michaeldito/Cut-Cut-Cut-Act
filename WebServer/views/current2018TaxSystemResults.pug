@@ -1,16 +1,27 @@
 -
-	income = income.toFixed(2);
-	standardDeduction = standardDeduction.toFixed(2);
-	stateAndLocalTaxDeduction = stateAndLocalTaxDeduction.toFixed(2);
-	deductions = deductions.toFixed(2);
-	taxableIncome = taxableIncome.toFixed(2);
-	credits = credits.toFixed(2);
-	taxedAmountAfterCredits = taxedAmountAfterCredits.toFixed(2);
+
+	function numberWithCommas(x) {
+		return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	}
+
+	income = numberWithCommas(income.toFixed(2));
+	standardDeduction = numberWithCommas(standardDeduction.toFixed(2));
+	stateAndLocalTaxDeduction = numberWithCommas(stateAndLocalTaxDeduction.toFixed(2));
+	deductions = numberWithCommas(deductions.toFixed(2));
+	taxableIncome = numberWithCommas(taxableIncome.toFixed(2));
+	credits = numberWithCommas(credits.toFixed(2));
+	taxedAmountAfterCredits = numberWithCommas(taxedAmountAfterCredits.toFixed(2));
 
 h3 Results for Current 2018 System
-| Total Income: $#{income}
+strong Tax Owed
 br
-| Minus the following deductions: 
+| $#{taxedAmountAfterCredits}
+br
+strong Total Income
+br
+| $#{income}
+br
+strong Minus the following deductions
 br
 | 	Standard Deduction: $#{standardDeduction}
 br
@@ -32,12 +43,12 @@ table
 	each bracket, index in bracketResults.resultsFromBrackets
 		tr
 			-
-				var taxedAmount = (bracket.taxedAmount).toFixed(2);
-				var start = bracket.start.toFixed(2);
+				var taxedAmount = numberWithCommas((bracket.taxedAmount).toFixed(2));
+				var start = numberWithCommas(bracket.start.toFixed(2));
 				var end = bracket.end;
-				if (end == 'inf') end = 'infinity'; else end = parseFloat(end).toFixed(2);
+				if (end == 'inf') end = 'infinity'; else end = numberWithCommas(parseFloat(end).toFixed(2));
 				var percent = (bracket.percent * 100).toFixed(1);
-				var incomeInBracket = bracket.incomeInBracket.toFixed(2);
+				var incomeInBracket = numberWithCommas(bracket.incomeInBracket.toFixed(2));
 			td $#{start}
 			td $#{end}
 			td #{percent}%
@@ -53,5 +64,5 @@ br
 | You taxes are further reduced by $#{credits} in tax credits.
 br
 
-| Leaving you owing $#{taxedAmountAfterCredits} out of your total income of $#{income}.
+strong Leaving you owing $#{taxedAmountAfterCredits} out of your total income of $#{income}.
 br

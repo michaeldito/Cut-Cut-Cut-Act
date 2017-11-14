@@ -66,14 +66,16 @@ updatePageWithRestServerResponse = function(res, status) {
 		if (dollarSavings < 0)
 			dollarSavings *= -1;
 
+		dollarSavingsText = numberWithCommas(dollarSavings.toFixed(2));
+
 		if (res.savingsUnderNewPlan > 0) {
-			summaryMessage.innerHTML = "You will pay $" + dollarSavings.toFixed(2) + " less in taxes under the proposed house bill.";
+			summaryMessage.innerHTML = "You will pay $" + dollarSavingsText + " less in taxes under the proposed house bill.";
 			summaryMessage.style.color = 'green';
 			percentSavingsMessage.innerHTML = "This is " + percentSavings + "% of your income";
 			percentSavingsMessage.style.color = 'green';
 		}
 		else {
-			summaryMessage.innerHTML = "You will pay $" + dollarSavings.toFixed(2) + " more in taxes under the proposed house bill.";
+			summaryMessage.innerHTML = "You will pay $" + dollarSavingsText + " more in taxes under the proposed house bill.";
 			summaryMessage.style.color = 'red';
 			percentSavingsMessage.innerHTML = "This is " + percentSavings + "% of your income";
 			percentSavingsMessage.style.color = 'red';
@@ -106,4 +108,9 @@ updateResultsSubViewFor2018System = function(res, status) {
 	console.log('            ' + res);
 	var resultsDiv = document.getElementById('result-details-current2018System');
 	resultsDiv.innerHTML = res;
+}
+
+
+function numberWithCommas(x) {
+	return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
