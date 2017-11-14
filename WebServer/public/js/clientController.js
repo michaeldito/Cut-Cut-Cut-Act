@@ -1,6 +1,7 @@
 
 var restServerAddress = 'http://35.203.158.17/';
 $('#result-details-current2018System').slideToggle();
+$('#result-details-HouseSystem').slideToggle();
 
 $('#submit').click(function() {
 	calcTaxes();
@@ -10,6 +11,23 @@ $('#showResultDetails2018').click(function() {
 	var resultsView = document.getElementById('result-details-current2018System');
 	var thisButton = document.getElementById('showResultDetails2018');
 	$('#result-details-current2018System').slideToggle();
+
+	if (thisButton.isOpen == 'true') {
+		thisButton.isOpen = 'false';
+		thisButton.innerHTML = '&#9654';
+		console.log('closed twisty');
+	}
+	else{
+		thisButton.isOpen = 'true';
+		thisButton.innerHTML = '&#9660';
+		console.log('opened twisty');
+	}
+});
+
+$('#showResultDetailsHouse').click(function() {
+	var resultsView = document.getElementById('result-details-HouseSystem');
+	var thisButton = document.getElementById('showResultDetailsHouse');
+	$('#result-details-HouseSystem').slideToggle();
 
 	if (thisButton.isOpen == 'true') {
 		thisButton.isOpen = 'false';
@@ -75,10 +93,10 @@ updatePageWithRestServerResponse = function(res, status) {
 		var inputIncome = document.getElementById('income').value;
 		var percentSavings = Math.abs(((dollarSavings / inputIncome) * 100).toFixed(2));
 		var current2018TaxSystem = res.Current2018System;
+		var houseTaxCutsAndJobsActSystem = res.TaxCutsAndJobsActHouse;
 		var currentEffectiveTaxRate = ((res.Current2018System.taxedAmountAfterCredits / inputIncome) * 100).toFixed(2);
 		var houseEffectiveTaxRate = ((res.TaxCutsAndJobsActHouse.taxedAmountAfterCredits / inputIncome) * 100).toFixed(2);
 
-		console.log('Type: ' + typeof(current2018TaxSystem));
 
 		document.getElementById('results').style.visibility = 'visible';
 		if (dollarSavings < 0)
@@ -99,17 +117,32 @@ updatePageWithRestServerResponse = function(res, status) {
 			percentSavingsMessage.style.color = 'red';
 		}
 
-		console.log("         This will be the data sent to the server at resultsView/current2018TaxSystem:");
+		console.log("         This will be the data sent to the server at resultsView/resultDetails for Current 2018:");
 		console.log('            ' + JSON.stringify(current2018TaxSystem));
 
 		$.ajax({
 			type: 'POST',
-			url: '/resultsView/current2018TaxSystem',
+			url: '/resultsView/resultDetails',
 			data: JSON.stringify(current2018TaxSystem),
 			contentType: 'application/json',
 			success: updateResultsSubViewFor2018System,
 			error: function(jqXHR, textStatus, errorThrown) {
-				console.log("         Error thrown in post to resultsView/current2018TaxSystem in clientController.js, status = " + textStatus);
+				console.log("         Error thrown in post to resultsView/resultDetails for Current 2018 in clientController.js, status = " + textStatus);
+				console.log("            Error: " + errorThrown);
+			}
+		});
+
+		console.log("         This will be the data sent to the server at resultsView/resultDetails for the House Tax Cuts and Jobs Act:");
+		console.log('            ' + JSON.stringify(houseTaxCutsAndJobsActSystem));
+
+		$.ajax({
+			type: 'POST',
+			url: '/resultsView/resultDetails',
+			data: JSON.stringify(houseTaxCutsAndJobsActSystem),
+			contentType: 'application/json',
+			success: updateResultsSubViewForHouseTaxCutsAndJobsAct,
+			error: function(jqXHR, textStatus, errorThrown) {
+				console.log("         Error thrown in post to resultsView/resultDetails for the houseTaxCutsAndJobsActSystem in clientController.js, status = " + textStatus);
 				console.log("            Error: " + errorThrown);
 			}
 		});
@@ -125,6 +158,14 @@ updateResultsSubViewFor2018System = function(res, status) {
 	console.log('         The response is the following:');
 	console.log('            ' + res);
 	var resultsDiv = document.getElementById('result-details-current2018System');
+	resultsDiv.innerHTML = res;
+}
+
+updateResultsSubViewForHouseTaxCutsAndJobsAct = function(res, status) {
+	console.log('         Recieved a succesful response to /resultsView/current2018TaxSystem');
+	console.log('         The response is the following:');
+	console.log('            ' + res);
+	var resultsDiv = document.getElementById('result-details-HouseSystem');
 	resultsDiv.innerHTML = res;
 }
 
