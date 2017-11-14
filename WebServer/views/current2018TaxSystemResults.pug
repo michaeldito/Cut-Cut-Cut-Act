@@ -27,18 +27,21 @@ table
 		td Start of Bracket
 		td End of Bracket
 		td Percent
+		td Income within Bracket
 		td Amount Paid in Taxes
 	each bracket, index in bracketResults.resultsFromBrackets
 		tr
 			-
 				var taxedAmount = (bracket.taxedAmount).toFixed(2);
-				var start = bracket.start;
+				var start = bracket.start.toFixed(2);
 				var end = bracket.end;
-				if (end == 'inf') end = 'infinity';
+				if (end == 'inf') end = 'infinity'; else end = parseFloat(end).toFixed(2);
 				var percent = (bracket.percent * 100).toFixed(1);
-			td #{start}
-			td #{end}
+				var incomeInBracket = bracket.incomeInBracket.toFixed(2);
+			td $#{start}
+			td $#{end}
 			td #{percent}%
+			td $#{incomeInBracket}
 			td $#{taxedAmount}
 
 
@@ -50,5 +53,5 @@ br
 | You taxes are further reduced by $#{credits} in tax credits.
 br
 
-| Leaving you owing $#{taxedAmountAfterCredits} in total, out of your total income of $#{income}.
+| Leaving you owing $#{taxedAmountAfterCredits} out of your total income of $#{income}.
 br
