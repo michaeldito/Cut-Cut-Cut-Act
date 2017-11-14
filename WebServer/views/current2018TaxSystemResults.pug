@@ -1,39 +1,54 @@
-p
-	| Here are the details of your taxes under the current tax system for 2018
-	br
-	| Total Income #{income}
-	br
-	| Minus deductions:
-	br
-	| 	Standard Deduction: #{standardDeduction}
-	br
-	| 	State And Local Tax Deductions: #{stateAndLocalTaxDeduction}
-	br
-	| 	Itemized Deductions: #{deductions}
-	br
-	| Leaves you with #{taxableIncome} in Taxable Income
+-
+	income = income.toFixed(2);
+	standardDeduction = standardDeduction.toFixed(2);
+	stateAndLocalTaxDeduction = stateAndLocalTaxDeduction.toFixed(2);
+	deductions = deductions.toFixed(2);
+	taxableIncome = taxableIncome.toFixed(2);
+	credits = credits.toFixed(2);
+	taxedAmountAfterCredits = taxedAmountAfterCredits.toFixed(2);
 
-	| Tax Brackets
-	br
+h3 Results for Current 2018 System
+| Total Income: $#{income}
+br
+| Minus the following deductions: 
+br
+| 	Standard Deduction: $#{standardDeduction}
+br
+| 	State And Local Tax Deductions: $#{stateAndLocalTaxDeduction}
+br
+| 	Itemized Deductions: $#{deductions}
+br
+| Leaves you with $#{taxableIncome} in Taxable Income
+br
+br
+h5 Tax Brackets
 table
 	tr
 		td Start of Bracket
 		td End of Bracket
 		td Percent
 		td Amount Paid in Taxes
-
-	each bracket in bracketResults
+	each bracket, index in bracketResults.resultsFromBrackets
 		tr
-			-console.log(bracket);
-			each number in bracket
-				td number
-	br
+			-
+				var taxedAmount = (bracket.taxedAmount).toFixed(2);
+				var start = bracket.start;
+				var end = bracket.end;
+				if (end == 'inf') end = 'infinity';
+				var percent = (bracket.percent * 100).toFixed(1);
+			td #{start}
+			td #{end}
+			td #{percent}%
+			td $#{taxedAmount}
 
-	| You pay a total of #{bracketResults.taxedAmountFromBrackets} in taxes due to the brackets.
-	br
 
-	| You taxes are further reduced by {#credits}
-	br
+br
 
-	| Leaving you owing {#taxedAmountAfterCredits}
-	br
+| You pay a total of $#{bracketResults.taxedAmountFromBrackets} in taxes due to the brackets.
+br
+
+| You taxes are further reduced by $#{credits} in tax credits.
+br
+
+| Leaving you owing $#{taxedAmountAfterCredits} in total, out of your total income of $#{income}.
+br

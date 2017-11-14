@@ -9,19 +9,23 @@ class TaxBracket:
 	def calcTaxedAmount(self, totalIncome):
 		totalIncome = float(totalIncome)
 		taxedAmount = 0;
+		incomeInBracket = 0;
 		if totalIncome > self.end:
-			taxedAmount = (self.end - self.start) * self.percent;
+			incomeInBracket = self.end - self.start
 		elif totalIncome < self.start:
-			taxedAmount = 0;
+			incomeInBracket = 0
 		else:
-			taxedAmount = (totalIncome - self.start) * self.percent;
+			incomeInBracket = totalIncome - self.start
+
+		taxedAmount = incomeInBracket * self.percent
 
 		results = {
 			'order'       : self.order,
 			'start'       : self.start,
 			'end'         : str(self.end),
 			'percent'     : self.percent,
-			'taxedAmount' : taxedAmount
+			'taxedAmount' : taxedAmount,
+			'incomeInBracket' : incomeInBracket
 		}
 
 		return results
