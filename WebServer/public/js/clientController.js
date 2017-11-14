@@ -1,8 +1,25 @@
 
 var restServerAddress = 'http://35.203.158.17/';
+$('#result-details-current2018System').slideToggle();
 
 $('#submit').click(function() {
 	calcTaxes();
+});
+
+$('#showResultDetails2018').click(function() {
+	var resultsView = document.getElementById('result-details-current2018System');
+	var thisButton = document.getElementById('showResultDetails2018');
+	$('#result-details-current2018System').slideToggle();
+/*
+	if (resultsView.style.visibility == 'hidden') {
+		//resultsView.style.visibility = 'visible';
+		//thisButton.innerHTML = 'hide';
+	}
+	else{
+		//resultsView.style.visibility = 'hidden';
+		//thisButton.innerHTML = 'show';
+	}
+*/
 });
 
 calcTaxes = function() {
