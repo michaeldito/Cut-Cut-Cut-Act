@@ -10,26 +10,27 @@
 	deductions = numberWithCommas(deductions.toFixed(2));
 	taxableIncome = numberWithCommas(taxableIncome.toFixed(2));
 	credits = numberWithCommas(credits.toFixed(2));
+	var taxedAmountFromBrackets = numberWithCommas(bracketResults.taxedAmountFromBrackets.toFixed(2));
 	taxedAmountAfterCredits = numberWithCommas(taxedAmountAfterCredits.toFixed(2));
 
-h3 Results for Current 2018 System
-strong Tax Owed
-br
+h4 Results for Current 2018 System
+label Tax Owed
 | $#{taxedAmountAfterCredits}
 br
-strong Total Income
 br
+h4 Calculation
+label Total Income
 | $#{income}
+label Minus the following deductions
+label Standard Deduction
+| $#{standardDeduction}
+label State And Local Tax Deductions
+| $#{stateAndLocalTaxDeduction}
+label Itemized Deductions
+| $#{deductions}
 br
-strong Minus the following deductions
-br
-| 	Standard Deduction: $#{standardDeduction}
-br
-| 	State And Local Tax Deductions: $#{stateAndLocalTaxDeduction}
-br
-| 	Itemized Deductions: $#{deductions}
-br
-| Leaves you with $#{taxableIncome} in Taxable Income
+label Leaves you with Taxable Income of
+| $#{taxableIncome}
 br
 br
 h5 Tax Brackets
@@ -58,11 +59,11 @@ table
 
 br
 
-| You pay a total of $#{bracketResults.taxedAmountFromBrackets} in taxes due to the brackets.
+| You pay a total of $#{taxedAmountFromBrackets} in taxes due to the brackets. 
 br
 
 | You taxes are further reduced by $#{credits} in tax credits.
 br
 
-strong Leaving you owing $#{taxedAmountAfterCredits} out of your total income of $#{income}.
+label Leaving you owing $#{taxedAmountAfterCredits} out of your total income of $#{income}.
 br
