@@ -1,6 +1,9 @@
 from TaxBracket import *
 from TaxBrackets import *
 from TaxSystem import *
+from DeductionConfiguration import *
+import json
+
 
 def buildTaxCutsAndJobsActSystem():
 	brackets = []
@@ -28,12 +31,20 @@ def buildTaxCutsAndJobsActSystem():
 		'married' : cccMarriedBrackets
 	}
 
-	standardDeductions = {}
-	standardDeductions['single'] = 0
-	standardDeductions['married'] = 0
+	deductionConfiugrations = {}
 
+	deductionConfiugrations['standardDeductionSingle']   = DeductionConfiguration('standardDeductionSingle', deductionAllowed=0, message='The standard deduction is per-se not allowed in this tax plan, however there is a new 0\% bracket that is similar to a standard deduction.')
+	deductionConfiugrations['standardDeductionMarried']  = DeductionConfiguration('standardDeductionMarried', deductionAllowed=0, message='The standard deduction is per-se not allowed in this tax plan, however there is a new 0\% bracket that is similar to a standard deduction.')
+	deductionConfiugrations['personalExemption']         = DeductionConfiguration('personalExemption', staticDeductionAmount=4150, staticDeductionDelta=-1, message='You are not allowed to take a personal exemption in this tax plan, however you can take exemptions for your dependents.')
+	deductionConfiugrations['stateAndLocalTaxDeduction'] = DeductionConfiguration('stateAndLocalTaxDeduction', deductionAllowed=0, message='You are not allowed to deduct state and local taxes in this plan.')
+	deductionConfiugrations['itemizedDeductions']        = DeductionConfiguration('itemizedDeductions', message='If you itemize your deductions, you cannot take the standard deduction')
 
-	cccTaxSystem = TaxSystem('TaxCutsAndJobsActHouse', cccBrackets, standardDeductions, 4150, 0, 0)
+	messages = []
+
+	messages.append('The House plan does not allow you to take a personal exemption for yourself, but you can still take them for your dependents. We have reduced the number of personal exemptions you requested by 1')
+
+	#cccTaxSystem = TaxSystem('TaxCutsAndJobsActHouse', cccBrackets, standardDeductions, 4150, 0, 0)
+	cccTaxSystem = TaxSystem('TaxCutsAndJobsActHouse', cccBrackets, deductionConfiugrations, messages)
 
 	return cccTaxSystem
 
@@ -67,10 +78,18 @@ def buildCurrent2018System():
 		'married' : marriedBrackets
 	}
 
-	standardDeductions = {}
-	standardDeductions['single'] = 6500
-	standardDeductions['married'] = 13000
+	deductionConfiugrations = {}
 
-	currentTaxSystem = TaxSystem('Current2018System', bracketsArray, standardDeductions, 4150)
+	deductionConfiugrations['standardDeductionSingle']   = DeductionConfiguration('standardDeductionSingle', staticDeductionAmount = 6500)
+	deductionConfiugrations['standardDeductionMarried']  = DeductionConfiguration('standardDeductionMarried', staticDeductionAmount = 13000)
+	deductionConfiugrations['personalExemption']         = DeductionConfiguration('personalExemption', staticDeductionAmount=4150)
+	deductionConfiugrations['stateAndLocalTaxDeduction'] = DeductionConfiguration('stateAndLocalTaxDeduction', deductionAllowed=1)
+	deductionConfiugrations['itemizedDeductions']        = DeductionConfiguration('itemizedDeductions', message='If you itemize your deductions, you cannot take the standard deduction')
+
+	messages = []
+
+	messages.append('The tax brackets used are based on the 2018 tax brackets.')
+
+	currentTaxSystem = TaxSystem('Current2018System', bracketsArray, deductionConfiugrations, messages)
 
 	return currentTaxSystem
