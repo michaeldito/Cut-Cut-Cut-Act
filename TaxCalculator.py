@@ -1,12 +1,12 @@
 import json
 from TaxBracketFactory import *
 from TaxSystem import *
-def calculateTaxes(income, status, itemizedDeductions=0, stateAndLocalTaxDeduction=0, credits=0, personalExemptions=1):
+def calculateTaxes(income, status, itemizedDeductions=0, stateAndLocalTaxDeduction=0, propertyTaxDeduction=0, tuitionWaved=0, credits=0, personalExemptions=1):
 	taxCutsAndJobsActTaxSystem = buildTaxCutsAndJobsActSystem()
 	currentTaxSystem = buildCurrent2018System()
 
-	taxCutsAndJobsActResults = taxCutsAndJobsActTaxSystem.calcTaxedAmount(income, status, itemizedDeductions, stateAndLocalTaxDeduction, credits, personalExemptions)
-	currentSystemResults = currentTaxSystem.calcTaxedAmount(income, status, itemizedDeductions, stateAndLocalTaxDeduction, credits, personalExemptions)
+	taxCutsAndJobsActResults = taxCutsAndJobsActTaxSystem.calcTaxedAmount(income, status, itemizedDeductions, stateAndLocalTaxDeduction, propertyTaxDeduction, tuitionWaved, credits, personalExemptions)
+	currentSystemResults = currentTaxSystem.calcTaxedAmount(income, status, itemizedDeductions, stateAndLocalTaxDeduction, propertyTaxDeduction, tuitionWaved, credits, personalExemptions)
 
 	results = {}
 

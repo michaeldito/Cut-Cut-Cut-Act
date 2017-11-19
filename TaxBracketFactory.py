@@ -8,21 +8,19 @@ import json
 def buildTaxCutsAndJobsActSystem():
 	brackets = []
 
-	brackets.append(TaxBracket(0,0,12000.0,0))
-	brackets.append(TaxBracket(1,12000.0,45000.0,.12))
-	brackets.append(TaxBracket(2,45000.0,200000.0,.25))
-	brackets.append(TaxBracket(3,200000.0,500000.0,.35))
-	brackets.append(TaxBracket(4,500000.0,float("inf"),.396))
+	brackets.append(TaxBracket(0,0.0,45000.0,.12))
+	brackets.append(TaxBracket(1,45000.0,200000.0,.25))
+	brackets.append(TaxBracket(2,200000.0,500000.0,.35))
+	brackets.append(TaxBracket(3,500000.0,float("inf"),.396))
 
 	cccSingleBrackets = TaxBrackets(brackets)
 
 	brackets = []
 
-	brackets.append(TaxBracket(0,0,24000.0,0))
-	brackets.append(TaxBracket(1,24000.0,90000.0,.12))
-	brackets.append(TaxBracket(2,90000.0,260000.0,.25))
-	brackets.append(TaxBracket(3,260000.0,1000000.0,.35))
-	brackets.append(TaxBracket(4,1000000.0,float("inf"),.396))
+	brackets.append(TaxBracket(0,0.0,90000.0,.12))
+	brackets.append(TaxBracket(1,90000.0,260000.0,.25))
+	brackets.append(TaxBracket(2,260000.0,1000000.0,.35))
+	brackets.append(TaxBracket(3,1000000.0,float("inf"),.396))
 
 	cccMarriedBrackets = TaxBrackets(brackets)
 
@@ -33,17 +31,18 @@ def buildTaxCutsAndJobsActSystem():
 
 	deductionConfiugrations = {}
 
-	deductionConfiugrations['standardDeductionSingle']   = DeductionConfiguration('standardDeductionSingle', deductionAllowed=0, message='The standard deduction is per-se not allowed in this tax plan, however there is a new 0\% bracket that is similar to a standard deduction.')
-	deductionConfiugrations['standardDeductionMarried']  = DeductionConfiguration('standardDeductionMarried', deductionAllowed=0, message='The standard deduction is per-se not allowed in this tax plan, however there is a new 0\% bracket that is similar to a standard deduction.')
-	deductionConfiugrations['personalExemption']         = DeductionConfiguration('personalExemption', staticDeductionAmount=4150, staticDeductionDelta=-1, message='You are not allowed to take a personal exemption in this tax plan, however you can take exemptions for your dependents.')
+	deductionConfiugrations['standardDeductionSingle']   = DeductionConfiguration('standardDeductionSingle', staticDeductionAmount=12200, deductionAllowed=1, message='You can only take the standard deduction if you do not itemize deductions.')
+	deductionConfiugrations['standardDeductionMarried']  = DeductionConfiguration('standardDeductionMarried', staticDeductionAmount=24400, deductionAllowed=1, message='You can only take the standard deduction if you do not itemize deductions.')
+	deductionConfiugrations['personalExemption']         = DeductionConfiguration('personalExemption', deductionAllowed=0, staticDeductionAmount=0, message='There are no personal exemptions under this plan.')
 	deductionConfiugrations['stateAndLocalTaxDeduction'] = DeductionConfiguration('stateAndLocalTaxDeduction', deductionAllowed=0, message='You are not allowed to deduct state and local taxes in this plan.')
 	deductionConfiugrations['itemizedDeductions']        = DeductionConfiguration('itemizedDeductions', message='If you itemize your deductions, you cannot take the standard deduction')
+	deductionConfiugrations['propertyTaxDeduction']      = DeductionConfiguration('propertyTaxDeduction', maxDeduction=10000, message='There is a $10,000 limit on property tax deductions under this plan')
+	deductionConfiugrations['tuitionWaverDeduction']     = DeductionConfiguration('tuitionWaverDeduction', deductionAllowed=0, message='In this tax plan, any waved tuition is considered income.')
 
 	messages = []
 
-	messages.append('The House plan does not allow you to take a personal exemption for yourself, but you can still take them for your dependents. We have reduced the number of personal exemptions you requested by 1')
+	messages.append('There are no personal exemptions under the house bill')
 
-	#cccTaxSystem = TaxSystem('TaxCutsAndJobsActHouse', cccBrackets, standardDeductions, 4150, 0, 0)
 	cccTaxSystem = TaxSystem('TaxCutsAndJobsActHouse', cccBrackets, deductionConfiugrations, messages)
 
 	return cccTaxSystem
@@ -85,6 +84,8 @@ def buildCurrent2018System():
 	deductionConfiugrations['personalExemption']         = DeductionConfiguration('personalExemption', staticDeductionAmount=4150)
 	deductionConfiugrations['stateAndLocalTaxDeduction'] = DeductionConfiguration('stateAndLocalTaxDeduction', deductionAllowed=1)
 	deductionConfiugrations['itemizedDeductions']        = DeductionConfiguration('itemizedDeductions', message='If you itemize your deductions, you cannot take the standard deduction')
+	deductionConfiugrations['propertyTaxDeduction']      = DeductionConfiguration('propertyTaxDeduction')
+	deductionConfiugrations['tuitionWaverDeduction']     = DeductionConfiguration('tuitionWaverDeduction', message='In this tax plan, any waved tuition is not considered incom')
 
 	messages = []
 
