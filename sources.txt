@@ -1,8 +1,22 @@
 
 
 House Tax Cuts and Jobs Act
+** Actual Bill
 * https://waysandmeansforms.house.gov/uploadedfiles/bill_text.pdf
-** brackets
-** standard deductions
+* Summary of changes
 * http://money.cnn.com/2017/11/16/news/economy/house-tax-bill-vote/index.html
-** changes to deductions, credits
+
+Current tax system
+** student loan interest deduction
+* https://www.irs.gov/taxtopics/tc456
+* https://www.forbes.com/sites/kellyphillipserb/2017/10/19/irs-announces-2018-tax-brackets-standard-deduction-amounts-and-more/#1c5fce03273b
+* https://www.irs.gov/publications/p970#en_US_2016_publink1000178230
+* american opportunity tax credit
+** https://www.irs.gov/credits-deductions/individuals/aotc
+* alternative minimum tax
+** https://www.irs.gov/taxtopics/tc556
+** https://www.nerdwallet.com/blog/taxes/alternative-minimum-tax-amt/
+** http://www.savingtoinvest.com/alternative-minimum-tax-amt-and-exemption-amounts/
+** https://www.fool.com/taxes/2017/04/15/your-2017-guide-to-the-alternative-minimum-tax.aspx
+* Charitable Contributions
+** https://www.irs.gov/charities-non-profits/charitable-organizations/charitable-contribution-deductions
