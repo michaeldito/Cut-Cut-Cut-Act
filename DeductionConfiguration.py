@@ -1,7 +1,7 @@
 import json
 
 class DeductionConfiguration:
-	def __init__(self, name, deductionAllowed=1, maxDeduction=float("inf"), staticDeductionAmount=0, staticDeductionDelta = 0, message = ''):
+	def __init__(self, name, deductionAllowed=1, maxDeduction=float("inf"), staticDeductionAmount=0, staticDeductionDelta=0, message=''):
 		self.name = name
 		self.deductionAllowed = deductionAllowed
 		self.maxDeduction = float(maxDeduction)

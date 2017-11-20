@@ -23,18 +23,22 @@ class TaxSystem:
 			personalExemptionsRequested += 1
 		deductions['personalExemption'] = self.deductionConfigurations['personalExemption'].calcDeduction(numberRequested=personalExemptionsRequested)
 
+		deductions['tuitionWaverDeduction'] = self.deductionConfigurations['tuitionWaverDeduction'].calcDeduction(tuitionWaved)
+
 		# Determine whether we will be taking the standard deduction, or itemizing deductions
-		itemizingDeductions = (itemizedDeductionsRequested != 0 and self.deductionConfigurations['itemizedDeductions'].deductionAllowed == 1) or (stateAndLocalTaxDeductionRequested != 0 and self.deductionConfigurations['stateAndLocalTaxDeduction'].deductionAllowed == 1) or (propertyTaxDeductionRequested != 0 and self.deductionConfigurations['propertyTaxDeduction'].deductionAllowed == 1)
+		itemizingDeductions = (itemizedDeductionsRequested != 0 and self.deductionConfigurations['itemizedDeductions'].deductionAllowed == 1) or (stateAndLocalTaxDeductionRequested != 0 and self.deductionConfigurations['stateAndLocalTaxDeduction'].deductionAllowed == 1) or (propertyTaxDeductionRequested != 0 and self.deductionConfigurations['propertyTaxDeduction'].deductionAllowed == 1) or (medicalExpensesDeductionRequested != 0 and self.deductionConfigurations['medicalExpensesDeduction'].deductionAllowed == 1)
 
 		itemizedDeduction = self.deductionConfigurations['itemizedDeductions'].calcDeduction(float(itemizedDeductionsRequested));
 		stateAndLocalTaxDeduction = self.deductionConfigurations['stateAndLocalTaxDeduction'].calcDeduction(float(stateAndLocalTaxDeductionRequested))
 		propertyTaxDeduction = self.deductionConfigurations['propertyTaxDeduction'].calcDeduction(float(propertyTaxDeductionRequested))
 
 		# Medical Expenses can only be deducted if they are greater than 10% of income
-		if (medicalExpensesDeductionRequested > 0.1 * income):
+		if (float(medicalExpensesDeductionRequested) > 0.1 * income):
 			medicalExpensesDeduction = self.deductionConfigurations['medicalExpensesDeduction'].calcDeduction(float(medicalExpensesDeductionRequested))
 		else:
 			medicalExpensesDeduction = self.deductionConfigurations['medicalExpensesDeduction'].calcDeduction(0)
+
+		print('Medical Expenses deduction ' + str(medicalExpensesDeduction['amountDeducted']))
 
 
 		if status == 'single':
@@ -44,8 +48,8 @@ class TaxSystem:
 
 		totalItemizedDeductions = itemizedDeduction['amountDeducted'] + stateAndLocalTaxDeduction['amountDeducted'] + propertyTaxDeduction['amountDeducted'] + medicalExpensesDeduction['amountDeducted']
 
-		# print('itemized deduction amount ' + str(totalItemizedDeductions))
-		# print('standard deduction amount ' + str(standardDeduction['amountDeducted']))
+		print('itemized deduction amount ' + str(totalItemizedDeductions))
+		print('standard deduction amount ' + str(standardDeduction['amountDeducted']))
 
 		if (itemizingDeductions):
 			itemizingDeductions = standardDeduction['amountDeducted'] < totalItemizedDeductions
@@ -58,6 +62,7 @@ class TaxSystem:
 			deductions['itemizedDeduction'] = itemizedDeduction
 			deductions['stateAndLocalTaxDeduction'] = stateAndLocalTaxDeduction
 			deductions['propertyTaxDeduction'] = propertyTaxDeduction
+			deductions['medicalExpensesDeduction'] = medicalExpensesDeduction
 		else:
 			deductions['standardDeduction'] = standardDeduction
 
@@ -99,14 +104,14 @@ class TaxSystem:
 
 		results = {}
 		results['taxSystem'] = self.name
-		results['deductions'] = deductions
+		results['messages'] = self.messages
 		results['income'] = income
 		results['status'] = status
-		results['credits'] = credits
+		results['deductions'] = deductions
 		results['taxableIncome'] = taxableIncome
-		results['taxedAmountFromBrackets'] = taxedAmountFromBrackets
-		results['taxedAmountAfterCredits'] = taxedAmountAfterCredits
 		results['bracketResults'] = bracketResults
-		results['messages'] = self.messages
+		results['taxedAmountFromBrackets'] = taxedAmountFromBrackets
+		results['credits'] = credits
+		results['taxedAmountAfterCredits'] = taxedAmountAfterCredits
 
 		return results

@@ -5,12 +5,25 @@ def calculateTaxes(income, status, itemizedDeductions=0, stateAndLocalTaxDeducti
 	taxCutsAndJobsActTaxSystem = buildTaxCutsAndJobsActSystem()
 	currentTaxSystem = buildCurrent2018System()
 
-	taxCutsAndJobsActResults = taxCutsAndJobsActTaxSystem.calcTaxedAmount(income, status, itemizedDeductions, stateAndLocalTaxDeduction, propertyTaxDeduction, tuitionWaved, medicalExpensesDeduction, childDependents, nonChildDependents)
-	currentSystemResults = currentTaxSystem.calcTaxedAmount(income, status, itemizedDeductions, stateAndLocalTaxDeduction, propertyTaxDeduction, tuitionWaved, medicalExpensesDeduction, childDependents, nonChildDependents)
+	taxCutsAndJobsActResults = taxCutsAndJobsActTaxSystem.calcTaxedAmount(income, status, itemizedDeductions, stateAndLocalTaxDeduction, propertyTaxDeduction, medicalExpensesDeduction, tuitionWaved, childDependents, nonChildDependents)
+	currentSystemResults = currentTaxSystem.calcTaxedAmount(income, status, itemizedDeductions, stateAndLocalTaxDeduction, propertyTaxDeduction, medicalExpensesDeduction, tuitionWaved, childDependents, nonChildDependents)
+
+	inputParameters = {}
+
+	inputParameters['income'] = income
+	inputParameters['status'] = status
+	inputParameters['itemizedDeductions'] = itemizedDeductions
+	inputParameters['stateAndLocalTaxDeduction'] = stateAndLocalTaxDeduction
+	inputParameters['propertyTaxDeduction'] = propertyTaxDeduction
+	inputParameters['medicalExpensesDeduction'] = medicalExpensesDeduction
+	inputParameters['tuitionWaved'] = tuitionWaved
+	inputParameters['childDependents'] = childDependents
+	inputParameters['nonChildDependents'] = nonChildDependents
 
 	results = {}
 
 	results['savingsUnderNewPlan'] = currentSystemResults['taxedAmountAfterCredits'] - taxCutsAndJobsActResults['taxedAmountAfterCredits']
+	results['input'] = inputParameters
 	results['TaxCutsAndJobsActHouse'] = taxCutsAndJobsActResults
 	results['Current2018System'] = currentSystemResults
 

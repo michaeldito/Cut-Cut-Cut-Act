@@ -42,7 +42,7 @@ def buildTaxCutsAndJobsActSystem():
 	deductionConfigurations['stateAndLocalTaxDeduction'] = DeductionConfiguration('stateAndLocalTaxDeduction', deductionAllowed=0, message='You are not allowed to deduct state and local taxes in this plan.')
 	deductionConfigurations['itemizedDeductions']        = DeductionConfiguration('itemizedDeductions', message='If you itemize your deductions, you cannot take the standard deduction')
 	deductionConfigurations['propertyTaxDeduction']      = DeductionConfiguration('propertyTaxDeduction', maxDeduction=10000, message='There is a $10,000 limit on property tax deductions under this plan')
-	deductionConfigurations['tuitionWaverDeduction']     = DeductionConfiguration('tuitionWaverDeduction', deductionAllowed=0, message='In this tax plan, any waved tuition is considered income.')
+	deductionConfigurations['tuitionWaverDeduction']     = DeductionConfiguration('tuitionWaverDeduction', deductionAllowed=0, message='In this tax plan, any waved tuition is considered income, and therefore is not deducted.')
 	deductionConfigurations['medicalExpensesDeduction']  = DeductionConfiguration('medicalExpensesDeduction', deductionAllowed=0, message='In this tax plan, you cannot deduct medical expenses.')
 
 	# Build Credits
@@ -54,7 +54,8 @@ def buildTaxCutsAndJobsActSystem():
 	# Build Messages
 	messages = []
 
-	messages.append('There are no personal exemptions under the house bill')
+	messages.append('There are no personal exemptions under the house bill.')
+	messages.append('There is no medical expenses deduction under the house bill.')
 
 	cccTaxSystem = TaxSystem('TaxCutsAndJobsActHouse', cccBrackets, deductionConfigurations, creditConfigurations, messages)
 
@@ -98,7 +99,7 @@ def buildCurrent2018System():
 	deductionConfigurations['stateAndLocalTaxDeduction'] = DeductionConfiguration('stateAndLocalTaxDeduction', deductionAllowed=1)
 	deductionConfigurations['itemizedDeductions']        = DeductionConfiguration('itemizedDeductions', message='If you itemize your deductions, you cannot take the standard deduction')
 	deductionConfigurations['propertyTaxDeduction']      = DeductionConfiguration('propertyTaxDeduction')
-	deductionConfigurations['tuitionWaverDeduction']     = DeductionConfiguration('tuitionWaverDeduction', message='In this tax plan, any waved tuition is not considered incom')
+	deductionConfigurations['tuitionWaverDeduction']     = DeductionConfiguration('tuitionWaverDeduction', message='In this tax plan, any waved tuition is not considered income. We deduct all tuition waved from your income.')
 	deductionConfigurations['medicalExpensesDeduction']  = DeductionConfiguration('medicalExpensesDeduction', message='In this tax plan, you can deduct medical expenses as an itemized deduction if those expenses are greater than 10\% of your income.')
 	# Build Credits
 
@@ -109,6 +110,8 @@ def buildCurrent2018System():
 	messages = []
 
 	messages.append('The tax brackets used are based on the 2018 tax brackets.')
+	messages.append('The medical expenses deduction only applies if medical expenses are greater than 10% of your income.')
+	messages.append('Under current law, any tuition waved by a higher education institution is not counted as income. To account for this we have added any tuition waved to you income, and then subtracted it via a deduction.')
 
 	currentTaxSystem = TaxSystem('Current2018System', bracketsArray, deductionConfigurations, creditConfigurations, messages)
 

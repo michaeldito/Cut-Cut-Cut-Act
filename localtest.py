@@ -50,6 +50,6 @@ def deductionConfigurationTest():
 	print(notAllowedNoLimitDynamic.calcDeduction(2000))
 
 def taxBracketTest():
-	return calculateTaxes(110000, 'single', itemizedDeductions=0, stateAndLocalTaxDeduction=7200, propertyTaxDeduction=11000, medicalExpensesDeduction=0, tuitionWaved=10000, childDependents=0, nonChildDependents=0)
+	return calculateTaxes(100000, 'single', itemizedDeductions=0, stateAndLocalTaxDeduction=0, propertyTaxDeduction=0, medicalExpensesDeduction=20000, tuitionWaved=0, childDependents=0, nonChildDependents=0)
 
 print(taxBracketTest())
