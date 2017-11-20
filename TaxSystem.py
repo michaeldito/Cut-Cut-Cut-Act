@@ -10,6 +10,7 @@ class TaxSystem:
 		self.messages = messages
 
 	def calcTaxedAmount(self, income, status, itemizedDeductionsRequested=0, stateAndLocalTaxDeductionRequested=0, propertyTaxDeductionRequested=0, medicalExpensesDeductionRequested=0, tuitionWaved=0, childDependents=0, nonChildDependents=0):
+		calculationMessages = []
 
 		deductions = {}
 
@@ -35,8 +36,10 @@ class TaxSystem:
 		# Medical Expenses can only be deducted if they are greater than 10% of income
 		if (float(medicalExpensesDeductionRequested) > 0.1 * income):
 			medicalExpensesDeduction = self.deductionConfigurations['medicalExpensesDeduction'].calcDeduction(float(medicalExpensesDeductionRequested))
+			calculationMessages.append('You have enough medical expenses to get the medical expenses deduction if it is allowed in this tax system.')
 		else:
 			medicalExpensesDeduction = self.deductionConfigurations['medicalExpensesDeduction'].calcDeduction(0)
+			calculationMessages.append('You do not have enough medical expenses to get the medical expenses deduction.')
 
 		print('Medical Expenses deduction ' + str(medicalExpensesDeduction['amountDeducted']))
 
@@ -59,11 +62,13 @@ class TaxSystem:
 
 		# Build deductions
 		if (itemizingDeductions):
+			calculationMessages.append('Your itemized deductions are greater than the standard deduction, so we are itemizing your deductions.')
 			deductions['itemizedDeduction'] = itemizedDeduction
 			deductions['stateAndLocalTaxDeduction'] = stateAndLocalTaxDeduction
 			deductions['propertyTaxDeduction'] = propertyTaxDeduction
 			deductions['medicalExpensesDeduction'] = medicalExpensesDeduction
 		else:
+			calculationMessages.append('The standard deduction is greater than your itemized deductions, so we are taking the standard deduction.')
 			deductions['standardDeduction'] = standardDeduction
 
 
@@ -104,7 +109,8 @@ class TaxSystem:
 
 		results = {}
 		results['taxSystem'] = self.name
-		results['messages'] = self.messages
+		results['taxSystemMessages'] = self.messages
+		results['calculationMessages'] = calculationMessages
 		results['income'] = income
 		results['status'] = status
 		results['deductions'] = deductions
