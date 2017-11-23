@@ -1,5 +1,5 @@
 
-var restServerAddress = 'http://35.203.158.17/';
+var restServerAddress = 'http://35.197.27.199/';
 $('#result-details-current2018System').slideToggle();
 $('#result-details-HouseSystem').slideToggle();
 
@@ -47,17 +47,23 @@ calcTaxes = function() {
 	var status = $('input[name=status]:checked').val();
 
 	var stateAndLocalTaxDeduction = document.getElementById('stateAndLocalTaxDeduction').value;
-	var deductions = document.getElementById('deductions').value;
-	var credits = document.getElementById('credits').value;
-	var personalExemptions = document.getElementById('personalExemptions').value;
+	var propertyTaxDeduction = document.getElementById('propertyTaxDeduction').value;
+	var medicalExpensesDeduction = document.getElementById('medicalExpensesDeduction').value;
+	var tuitionWaved = document.getElementById('tuitionWaved').value;
+	var itemizedDeductions = document.getElementById('itemizedDeductions').value;
+	var childDependents = document.getElementById('childDependents').value;
+	var nonChildDependents = document.getElementById('nonChildDependents').value;
 
 	var postData = {
-			income: document.getElementById('income').value,
+			income: income,
 			status: status,
-			deductions: deductions,
 			stateAndLocalTaxDeduction: stateAndLocalTaxDeduction,
-			credits: credits,
-			personalExemptions: personalExemptions
+			propertyTaxDeduction: propertyTaxDeduction,
+			medicalExpensesDeduction: medicalExpensesDeduction,
+			tuitionWaved: tuitionWaved,
+			itemizedDeductions: itemizedDeductions,
+			childDependents: childDependents,
+			nonChildDependents: nonChildDependents
 	}
 
 	console.log("Sending data to Rest Server /cutcutcut: ");
@@ -148,7 +154,7 @@ updatePageWithRestServerResponse = function(res, status) {
 		});
 	}
 	catch(exception) {
-		console.log('Caught Exception: ' + exception.message);
+		console.log('Caught Exception in clientController/updatePageWithRestServerResponse: ' + exception.message);
 	}
 
 }

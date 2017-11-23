@@ -21,17 +21,26 @@ block content
         label Income
         input(id='income', type='text', style='text-align:center' name='income')
         br
-        label State And Local Tax Deductions
+        label State And Local Tax Paid
         input(id='stateAndLocalTaxDeduction', type='text', style='text-align:center' name='stateAndLocalTaxDeduction')
         br
+        label Property Tax Paid
+        input(id='propertyTaxDeduction', type='text', style='text-align:center' name='propertyTaxDeduction')
+        br
+        label Medical Expenses
+        input(id='medicalExpensesDeduction', type='text', style='text-align:center' name='medicalExpensesDeduction')
+        br
+        label Tuition Waved
+        input(id='tuitionWaved', type='text', style='text-align:center' name='tuitionWaved')
+        br
         label Itemized Deductions
-        input(id='deductions', type='text', style='text-align:center' name='deductions')
+        input(id='itemizedDeductions', type='text', style='text-align:center' name='itemizedDeductions')
         br
-        label Tax Credits
-        input(id='credits', type='text', style='text-align:center' name='credits')
+        label Child Dependents (17 years old or under)
+        input(id='childDependents', type='text', style='text-align:center' name='childDependents')
         br
-        label Exemptions (1 for you, one for each child)
-        input(id='personalExemptions', type='text', style='text-align:center' name='personalExemptions')
+        label Non-Child Dependents
+        input(id='nonChildDependents', type='text', style='text-align:center' name='nonChildDependents')
         br
         label ​
         input.myForm(id='submit', type='submit', value='submit')

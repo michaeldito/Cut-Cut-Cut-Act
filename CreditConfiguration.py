@@ -45,12 +45,13 @@ class CreditConfiguration:
 		else:
 			numberCredited = 0
 
+
 		# Build Return Dictionary
 		results = {}
 		results['name'] = self.name
 		results['message'] = self.message
 		results['creditAllowed'] = self.creditAllowed
-		results['maxCredit'] = self.maxCredit
+		results['maxCredit'] = str(self.maxCredit)
 		results['staticCreditAmount'] = self.staticCreditAmount
 		results['creditPerNumberRequested'] = creditPerNumberRequested
 		results['staticCreditDelta'] = self.staticCreditDelta

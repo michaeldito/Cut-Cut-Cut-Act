@@ -39,7 +39,7 @@ class DeductionConfiguration:
 		results['name'] = self.name
 		results['message'] = self.message
 		results['deductionAllowed'] = self.deductionAllowed
-		results['maxDeduction'] = self.maxDeduction
+		results['maxDeduction'] = str(self.maxDeduction)
 		results['staticDeductionAmount'] = self.staticDeductionAmount
 		results['staticDeductionDelta'] = self.staticDeductionDelta
 		results['amountRequested'] = amountRequested

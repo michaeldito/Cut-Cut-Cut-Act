@@ -19,7 +19,7 @@ def doTaxes():
 		income = float(incoming['income'])
 		status = incoming['status']
 		itemizedDeductions = float(incoming['itemizedDeductions'])
-		stateAndLocalTaxDeduction = float(incomeing['stateAndLocalTaxDeduction'])
+		stateAndLocalTaxDeduction = float(incoming['stateAndLocalTaxDeduction'])
 		propertyTaxDeduction = float(incoming['propertyTaxDeduction'])
 		medicalExpensesDeduction = float(incoming['medicalExpensesDeduction'])
 		tuitionWaved = float(incoming['tuitionWaved'])
