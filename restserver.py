@@ -18,12 +18,15 @@ def doTaxes():
 	try:
 		income = float(incoming['income'])
 		status = incoming['status']
-		deductions = float(incoming['deductions'])
-		stateAndLocalTaxDeduction = float(incoming['stateAndLocalTaxDeduction'])
-		credits = float(incoming['credits'])
-		personalExemptions = float(incoming['personalExemptions'])
+		itemizedDeductions = float(incoming['itemizedDeductions'])
+		stateAndLocalTaxDeduction = float(incomeing['stateAndLocalTaxDeduction'])
+		propertyTaxDeduction = float(incoming['propertyTaxDeduction'])
+		medicalExpensesDeduction = float(incoming['medicalExpensesDeduction'])
+		tuitionWaved = float(incoming['tuitionWaved'])
+		childDependents = float(incoming['childDependents'])
+		nonChildDependents = float(incoming['nonChildDependents'])
 
-		result = calculateTaxes(income, status, deductions, stateAndLocalTaxDeduction, credits, personalExemptions)
+		result = calculateTaxes(income, status, itemizedDeductions, stateAndLocalTaxDeduction, propertyTaxDeduction, medicalExpensesDeduction, tuitionWaved, childDependents, nonChildDependents)
 		print result
 		return Response(response=result, status=200, mimetype="application/json")
 	except:
