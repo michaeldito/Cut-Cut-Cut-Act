@@ -1,5 +1,5 @@
 
-var restServerAddress = 'http://35.197.27.199/';
+var restServerAddress = 'http://35.199.191.66/';
 $('#result-details-current2018System').slideToggle();
 $('#result-details-HouseSystem').slideToggle();
 
