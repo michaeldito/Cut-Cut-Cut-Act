@@ -128,7 +128,7 @@ updatePageWithRestServerResponse = function(res, status) {
 
 		$.ajax({
 			type: 'POST',
-			url: '/resultsView/resultDetails',
+			url: '/resultsView/resultDetailsSubView',
 			data: JSON.stringify(current2018TaxSystem),
 			contentType: 'application/json',
 			success: updateResultsSubViewFor2018System,
@@ -143,7 +143,7 @@ updatePageWithRestServerResponse = function(res, status) {
 
 		$.ajax({
 			type: 'POST',
-			url: '/resultsView/resultDetails',
+			url: '/resultsView/resultDetailsSubView',
 			data: JSON.stringify(houseTaxCutsAndJobsActSystem),
 			contentType: 'application/json',
 			success: updateResultsSubViewForHouseTaxCutsAndJobsAct,
@@ -160,7 +160,7 @@ updatePageWithRestServerResponse = function(res, status) {
 }
 
 updateResultsSubViewFor2018System = function(res, status) {
-	console.log('         Recieved a succesful response to /resultsView/current2018TaxSystem');
+	console.log('         Recieved a succesful response to /resultDetailsSubView/current2018TaxSystem');
 	console.log('         The response is the following:');
 	console.log('            ' + res);
 	var resultsDiv = document.getElementById('result-details-current2018System');
@@ -168,7 +168,7 @@ updateResultsSubViewFor2018System = function(res, status) {
 }
 
 updateResultsSubViewForHouseTaxCutsAndJobsAct = function(res, status) {
-	console.log('         Recieved a succesful response to /resultsView/current2018TaxSystem');
+	console.log('         Recieved a succesful response to /resultDetailsSubView/houseTaxCutsAndJobsAct');
 	console.log('         The response is the following:');
 	console.log('            ' + res);
 	var resultsDiv = document.getElementById('result-details-HouseSystem');

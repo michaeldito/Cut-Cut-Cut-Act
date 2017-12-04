@@ -8,13 +8,13 @@ router.get('/', function(req, res, next) {
 });
 
 /* GET home page. */
-router.post('/resultsView/resultDetails', function(req, res, next) {
+router.post('/resultsView/resultDetailsSubView', function(req, res, next) {
 	//var tempdata = {'bracketResults' : {'taxedAmountFromBrackets' : 11111}};
 	console.log('Recieved request at /resultsView/current2018TaxSystem:');
 	console.log('   Request Body:');
 	console.log('      Type: ' + typeof(req.body));
 	console.log('      ' + JSON.stringify(req.body));
-	req.app.render('resultDetails', req.body, function(err, html){
+	req.app.render('resultDetailsSubView', req.body, function(err, html){
 		console.log('zoe is the best!');
 		if (err) {
 			console.log("Error while rendering resultDetails:")
