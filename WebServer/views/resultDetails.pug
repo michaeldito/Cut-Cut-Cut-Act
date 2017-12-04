@@ -1,3 +1,7 @@
+extends layout
+
+block content
+
 -
 
 	function numberWithCommas(x) {
@@ -8,6 +12,8 @@
 	taxableIncome = numberWithCommas(taxableIncome.toFixed(2));
 	var taxedAmountFromBrackets = numberWithCommas(bracketResults.taxedAmountFromBrackets.toFixed(2));
 	taxedAmountAfterCredits = numberWithCommas(taxedAmountAfterCredits.toFixed(2));
+
+
 
 label Tax Owed
 | $#{taxedAmountAfterCredits}

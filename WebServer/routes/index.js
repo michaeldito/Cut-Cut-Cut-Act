@@ -10,14 +10,14 @@ router.get('/', function(req, res, next) {
 /* GET home page. */
 router.post('/resultsView/resultDetailsSubView', function(req, res, next) {
 	//var tempdata = {'bracketResults' : {'taxedAmountFromBrackets' : 11111}};
-	console.log('Recieved request at /resultsView/current2018TaxSystem:');
+	console.log('Recieved request at /resultsView/resultDetailsSubView:');
 	console.log('   Request Body:');
 	console.log('      Type: ' + typeof(req.body));
 	console.log('      ' + JSON.stringify(req.body));
 	req.app.render('resultDetailsSubView', req.body, function(err, html){
 		console.log('zoe is the best!');
 		if (err) {
-			console.log("Error while rendering resultDetails:")
+			console.log("Error while rendering resultDetailsSubView:")
 			console.log('   ' + err);
 		}
 		else {
@@ -25,8 +25,25 @@ router.post('/resultsView/resultDetailsSubView', function(req, res, next) {
 				res.send(html);
 			}
 			catch(exception) {
-				console.log('Cuaght Exception in /resultsView/current2018TaxSystem: ' + exception.message);
+				console.log('Cuaght Exception in /resultsView/resultDetailsSubView: ' + exception.message);
 			}
+		}
+	});
+});
+
+router.post('/resultsView/resultDetailsView', function(req, res, next) {
+	//var tempdata = {'bracketResults' : {'taxedAmountFromBrackets' : 11111}};
+	console.log('Recieved request at /resultsView/resultDetailsView:');
+	console.log('   Request Body:');
+	console.log('      Type: ' + typeof(req.body));
+	console.log('      ' + JSON.stringify(req.body));
+	req.app.render('resultDetailsView', req.body, function(req, res, next){
+		if (err) {
+			console.log("Error while rendering resultDetailsView:")
+			console.log('   ' + err);
+		}
+		else {
+			console.log('/resultsView/resultDetailsView: ');
 		}
 	});
 });

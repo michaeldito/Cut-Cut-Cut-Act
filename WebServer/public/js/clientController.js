@@ -1,11 +1,23 @@
 
-var restServerAddress = 'http://35.199.191.66/';
+var restServerAddress = 'http://35.197.12.161/';
+var currentResults = {};
+var houseResults = {};
+var senateResults = {};
+
 $('#result-details-current2018System').slideToggle();
 $('#result-details-HouseSystem').slideToggle();
 
 $('#submit').click(function() {
 	calcTaxes();
 });
+
+// Detail Buttons
+/*
+$('#result-details-link-current').click(function() {
+
+});
+*/
+// Detail Twistys
 
 $('#showResultDetails2018').click(function() {
 	var resultsView = document.getElementById('result-details-current2018System');
@@ -40,6 +52,8 @@ $('#showResultDetailsHouse').click(function() {
 		console.log('opened twisty');
 	}
 });
+
+// Processing
 
 calcTaxes = function() {
 	var income = document.getElementById('income').value;

@@ -1,11 +1,6 @@
 extends layout
 
 block content
-  // Header
-  #header
-    img#title-image(src='images/dollar-sign.png')
-    h1 Your Friendly Neighborhood Tax Estimator
-    p Check out how much you benefit, or don't benefit, with the proposed tax bills.
   // Main
   #main
     header.major.container(class='75%')
@@ -51,6 +46,14 @@ block content
         h1 Results
         p(id='tax_results')
         p(id='tax_results_percent')
+        br
+        br
+
+        //h1 Details
+        //input.button(id="result-details-link-current" type="button" value="Current 2018 System")
+        //input.button(id="result-details-link-house" type="button" value="House Bill")
+        //input.button(id="result-details-link-senate" type="button" value="Senate Bill")
+
         br
         br
         h4 Result Details for Current 2018 System  

@@ -9,6 +9,16 @@
 	var taxedAmountFromBrackets = numberWithCommas(bracketResults.taxedAmountFromBrackets.toFixed(2));
 	taxedAmountAfterCredits = numberWithCommas(taxedAmountAfterCredits.toFixed(2));
 
+	var totalDeductions = 0;
+	for(deductionKey in deductions) 
+		totalDeductions += deductions[deductionKey].amountDeducted;
+	totalDeductions = numberWithCommas(totalDeductions.toFixed(2));
+
+	var totalCredits = 0;
+	for(creditKey in credits) 
+		totalCredits += credits[creditKey].amountCredited;
+	totalCredits = numberWithCommas(totalCredits.toFixed(2));
+
 label Tax Owed
 | $#{taxedAmountAfterCredits}
 br
@@ -17,7 +27,23 @@ h4 Calculation
 label Total Income
 | $#{income}
 label Minus the following deductions
+| Total: $#{totalDeductions}
 br
+br
+each deduction, key in deductions
+	-
+		console.log('deduction' + JSON.stringify(deduction));
+		var name = deduction.name;
+		var message = deduction.message;
+		var amount = numberWithCommas(deduction.amountDeducted.toFixed(2));
+	strong #{name}
+	br 
+	| $#{amount}
+	br
+	| #{message}
+	br
+	br
+
 label Leaves you with Taxable Income of
 | $#{taxableIncome}
 br
@@ -46,11 +72,31 @@ table
 			td $#{taxedAmount}
 
 
+
 br
 
 | You pay a total of $#{taxedAmountFromBrackets} in taxes due to the brackets. 
 
-br
 
-label Leaving you owing $#{taxedAmountAfterCredits} out of your total income of $#{income}.
+label Taxes are reduced by the following credits:
+| Total: $#{totalCredits}
+br
+br
+each credit, key in credits
+	-
+		console.log('credit' + JSON.stringify(credit));
+		var name = credit.name;
+		var message = credit.message;
+		var amount = numberWithCommas(credit.amountCredited.toFixed(2));
+	strong #{name}
+	br 
+	| $#{amount}
+	br
+	| #{message}
+	br
+	br
+
+br
+strong Leaving you owing $#{taxedAmountAfterCredits} out of your total income of $#{income}.
+
 br
